@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validated Extract Info | POSSAP</title>
+        <meta name="title" content="POSSAP - A secure way to request and pay for your Police Specialized Services online.">
+        <meta name="description" content="The POSSAP portal provides you with the ability to request services such as Police Extract, FireArm License, Police Escort, Police Protection Services, CID Clearance Certificate, and Tint Permit, from the comfort of your home.">
+  
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Override for validate-document page specifically */
+        .progress-container .step.current .step-icon,
+        .progress-steps .step.current .step-icon,
+        .step.current .step-icon {
+            color: #ffffff !important;
+            background-color: #2F4CB0 !important;
+            font-size: 0.6rem !important;
+            width: 20px !important;
+            height: 20px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        /* Force the icon color */
+        .step.current .step-icon i {
+            color: #ffffff !important;
+        }
+
+        /* Tooltip styles */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px 15px;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            font-size: 14px;
+            line-height: 1.4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #000000 transparent transparent transparent;
+        }
+
+        .tooltip-container:hover .tooltip,
+        .tooltip-container.show-tooltip .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Extended width for POSSAP Approval Number card */
+        #validation-page .card {
+            max-width: 95% !important;
+            width: 95% !important;
+        }
+        
+        /* Extend main content width for validation page */
+        .main-content {
+            max-width: 45% !important;
+            width: 45% !important;
+        }
+
+        /* Mobile responsive styles for validation page */
+        @media (max-width: 768px) {
+            #validation-page .card {
+                max-width: 98% !important;
+                width: 98% !important;
+                padding: 1.5rem !important;
+            }
+            
+            .main-content {
+                max-width: 98% !important;
+                width: 98% !important;
+                padding: 1rem !important;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            #validation-page .card {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 1rem !important;
+                margin: 0 !important;
+            }
+            
+            .main-content {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 0.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Logos -->
+            <div class="logos">
+                <img src="Themes/PoliceTheme/Styles/images/Logopolice.png" alt="Nigeria Police Logo" class="police-logo">
+            </div>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburgerMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Navigation -->
+            <nav class="nav" id="navMenu">
+                <a href="https://possap.gov.ng/p/select-service" class="nav-link" target="_blank">Request Service</a>
+                <a href="https://possap.gov.ng/p/run-face-verification" class="nav-link" target="_blank">Virtual Verification</a>
+                <a href="v.html" class="nav-link active">Validate Document</a>
+                <a href="https://possap.gov.ng/p/about" class="nav-link" target="_blank">About</a>
+                <a href="https://possap.gov.ng/p/contact" class="nav-link" target="_blank">Contact</a>
+                <div class="login-section">
+                    <a href="https://possap.gov.ng/p/login" target="_blank" class="login-btn">Login | Sign Up</a>
+                </div>
+            </nav>
+            
+            <!-- Desktop Login Button -->
+            <div class="login-section desktop-login">
+                <a href="https://possap.gov.ng/p/login" target="_blank" class="login-btn" style="text-decoration: none; color: white;">Login | Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-steps">
+            <div class="step completed">
+                <div class="step-icon" style="background-color: #2F4CB0 !important; color: #ffffff !important; border: none !important; width: 15px !important; height: 15px !important; font-size: 0.5rem !important;">
+                    <i class="fas fa-circle" style="color: #2F4CB0 !important; font-size: 0.5rem !important;"></i>
+                </div>
+                <span class="step-text">Validate Document</span>
+            </div>
+            <div class="step-separator">></div>
+            <div class="step current">
+                <div class="step-icon" style="color: #ffffff !important; background-color: #ffffff !important; border: 2px solid #C0C0C0 !important; width: 15px !important; height: 15px !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; font-size: 0.5rem !important;">
+                    <i class="fas fa-circle" style="color: #ffffff !important; font-size: 0.5rem !important;"></i>
+                </div>
+                <span class="step-text">Document Info</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Validation Form Page -->
+        <div id="validation-page" class="page active">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">POSSAP Approval Number</h1>
+                    <div class="tooltip-container" id="helpTooltip">
+                        <a href="#" class="help-link">what is this?</a>
+                        <div class="tooltip">
+                            The Police Specialized Service Automation Project Approval Number is a unique number that is systematically assigned to each approved request generated on the Police Specialized Services Portal.
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="instruction">Enter an approval number below</p>
+                
+                <div class="input-container">
+                    <input type="text" class="approval-input" placeholder="PSS00000000000000">
+                </div>
+                
+                <div class="help-text">
+                    <span>Don't have an approval number?</span>
+                    <a href="https://possap.gov.ng/p/signup" class="help-link" target="_blank">Click here</a>
+                </div>
+                
+                <button class="proceed-btn" onclick="showDocumentInfo()">Proceed</button>
+                
+            </div>
+        </div>
+
+        <!-- Document Info Page -->
+        <div id="document-info-page" class="page">
+            <div class="card">
+                <h1 class="card-title">APPLICANT REQUEST INFORMATION</h1>
+                
+                <div class="applicant-section">
+                    <div class="photo-container">
+                        <img src="Themes/PoliceTheme/Styles/images/profilleimg.jpeg" alt="Applicant Photo" class="applicant-photo">
+                        <p class="photo-label">PASSPORT PHOTO</p>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Applicant Name</label>
+                            <span class="info-value">CHUKWUMA CHRISTIAN NWACHUKWU</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Service Name</label>
+                            <span class="info-value">TINTED GLASS PERMIT</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Vehicle Make</label>
+                            <span class="info-value">Toyota</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Vehicle Model</label>
+                            <span class="info-value">Corolla</span>
+                        </div>
+                        <div class="info-item">
+                            <label>VIN</label>
+                            <span class="info-value">1NXBR38E33Z067250</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Plate Number</label>
+                            <span class="info-value">NNE286EI</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Vehicle Color</label>
+                            <span class="info-value">Blue</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Year of Manufacture</label>
+                            <span class="info-value">2012</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Reason for Inquiry</label>
+                            <span class="info-value">Health</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Category of Tint</label>
+                            <span class="info-value">Category 3</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Approval Number</label>
+                            <span class="info-value">PSS08180000755480</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Approval Date</label>
+                            <span class="info-value">18/08/2025</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Expiry Date</label>
+                            <span class="info-value">18/08/2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-section">
+                    <h2 class="certificate-title">Details of Certificate</h2>
+                    <p class="certificate-text">
+                        The Deputy Inspector-General of police, Department of Operations, has approved the use of tinted glass on the vehicle with the following details in accordance with Section 66(2) of the National Road Traffic Regulations (1997) and Section 1(1) of the Motor Vehicle (Prohibition of Tinted Glass) Act, Laws of the Federation of Nigeria.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Left Section: Logo and Description -->
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="Themes/PoliceTheme/Styles/images/PossapLogo.svg" alt="POSSAP Logo" />
+                </div>
+                <div class="footer-text">
+                    A secure way to request and pay for your Police Specialized Services online.
+                </div>
+            </div>
+            
+            <!-- Middle Section: Navigation Links -->
+            <div class="footer-nav">
+                <a href="https://possap.gov.ng/p/about" class="footer-nav-link" target="_blank">About</a>
+                <a href="https://possap.gov.ng/p/contact" class="footer-nav-link" target="_blank">Contact</a>
+                <a href="#" class="footer-nav-link">Privacy Policy</a>
+                <a href="#" class="footer-nav-link">Terms Of Use</a>
+            </div>
+            
+            <!-- Right Section: Social Media -->
+            <div class="footer-right">
+                <div class="footer-social">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Hamburger Menu Toggle
+        function toggleHamburgerMenu() {
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu click handler
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            if (hamburgerMenu) {
+                hamburgerMenu.addEventListener('click', toggleHamburgerMenu);
+            }
+            
+            // Tooltip functionality
+            const helpTooltip = document.getElementById('helpTooltip');
+            if (helpTooltip) {
+                const helpLink = helpTooltip.querySelector('.help-link');
+                
+                // Click handler for tooltip
+                helpLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    helpTooltip.classList.toggle('show-tooltip');
+                });
+                
+                // Close tooltip when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!helpTooltip.contains(e.target)) {
+                        helpTooltip.classList.remove('show-tooltip');
+                    }
+                });
+            }
+            
+            // Social media icons click handlers
+            const socialIcons = document.querySelectorAll('.social-icon');
+            socialIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const iconClass = this.querySelector('i').className;
+                    if (iconClass.includes('instagram')) {
+                        window.open('https://www.instagram.com/possap_ngg', '_blank');
+                    } else if (iconClass.includes('facebook')) {
+                        window.open('https://www.facebook.com/profile.php?id=61552184257184', '_blank');
+                    } else if (iconClass.includes('twitter')) {
+                        window.open('https://twitter.com/possap_ngg', '_blank');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

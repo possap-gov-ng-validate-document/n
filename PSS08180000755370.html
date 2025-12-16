@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Validated Extract Info | POSSAP</title>
+        <meta name="title" content="POSSAP - A secure way to request and pay for your Police Specialized Services online.">
+        <meta name="description" content="The POSSAP portal provides you with the ability to request services such as Police Extract, FireArm License, Police Escort, Police Protection Services, CID Clearance Certificate, and Tint Permit, from the comfort of your home.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Override progress indicator for document info page */
+        .progress-container {
+            background-color: #ffffff;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .step-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        
+        .step.completed .step-icon {
+            background-color: #32CD32;
+            color: white;
+        }
+        
+        .step.current .step-icon {
+            color: #2F4CB0 !important;
+            background-color: transparent !important;
+            font-size: 0.4rem;
+        }
+        
+        .step-text {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .step.completed .step-text {
+            color: #333333;
+        }
+        
+        .step.current .step-text {
+            color: #28428C;
+        }
+        
+        .step-separator {
+            color: #999999;
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation back button */
+        .back-navigation {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .back-btn {
+            background-color: #28428C;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background-color: #1e2f63;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .page-info {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+        
+        /* Action buttons */
+        .action-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: #28428C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e2f63;
+        }
+        
+        .btn-secondary {
+            background-color: #f8f8f8;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .btn-success {
+            background-color: #32CD32;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #28a745;
+        }
+        
+        /* Mobile responsive for action buttons */
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Logos -->
+            <div class="logos">
+                <img src="Themes/PoliceTheme/Styles/images/Logopolice.png" alt="Nigeria Police Logo" class="police-logo">
+            </div>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburgerMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Navigation -->
+            <nav class="nav" id="navMenu">
+                <a href="https://possap.gov.ng/p/select-service" class="nav-link" target="_blank">Request Service</a>
+                <a href="https://possap.gov.ng/p/run-face-verification" class="nav-link" target="_blank">Virtual Verification</a>
+                <a href="v.html" class="nav-link active">Validate Document</a>
+                <a href="https://possap.gov.ng/p/about" class="nav-link" target="_blank">About</a>
+                <a href="https://possap.gov.ng/p/contact" class="nav-link" target="_blank">Contact</a>
+                <div class="login-section">
+                    <a href="https://possap.gov.ng/p/login" target="_blank" class="login-btn">Login | Sign Up</a>
+                </div>
+            </nav>
+            
+            <!-- Desktop Login Button -->
+            <div class="login-section desktop-login">
+                <a href="https://possap.gov.ng/p/login" target="_blank" class="login-btn" style="text-decoration: none; color: white;">Login | Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-steps">
+            <div class="step completed">
+                <div class="step-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <span class="step-text">Validate Document</span>
+            </div>
+            <div class="step-separator">></div>
+            <div class="step current">
+                <div class="step-icon">
+                    <i class="fas fa-circle"></i>
+                </div>
+                <span class="step-text">Document Info</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page active">
+            <div class="card">
+                
+                <h1 class="card-title">APPLICANT REQUEST INFORMATION</h1>
+                
+                <div class="photo-section">
+                    <div class="photo-container">
+                        <img src="Themes/PoliceTheme/Styles/images/profilleimg.jpeg" alt="Applicant Photo" class="applicant-photo">
+                        <p class="photo-label">PASSPORT PHOTO</p>
+                    </div>
+                </div>
+                
+                <div class="details-section">
+                    <h2 class="details-title">DETAILS</h2>
+                    <div class="info-grid">
+                        <!-- Row 1 -->
+                        <div class="info-item">
+                            <label>Applicant Name</label>
+                            <span class="info-value">Ekemezie Chidubem Kevin</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Service Name</label>
+                            <span class="info-value">TINTED GLASS PERMIT</span>
+                        </div>
+                        <div class="info-item vehicle-info">
+                            <div class="vehicle-details">
+                                <div class="info-item">
+                                    <label>Vehicle Make</label>
+                                    <span class="info-value">Toyota</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Vehicle Model</label>
+                                    <span class="info-value">Camry</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Row 2 -->
+                        <div class="info-item">
+                            <label>VIN</label>
+                            <span class="info-value">4T1BE46KC39U409038</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Plate Number</label>
+                            <span class="info-value">BNY591KS</span>
+                        </div>
+                        <div class="info-item vehicle-info">
+                            <div class="vehicle-details">
+                                <div class="info-item">
+                                    <label>Vehicle Color</label>
+                                    <span class="info-value">WHITE</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Year of Manufacture</label>
+                                    <span class="info-value">2009</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Row 3 -->
+                        <div class="info-item">
+                            <label>Reason for Inquiry</label>
+                            <span class="info-value">Health</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Category of Tint</label>
+                            <span class="info-value">Category 3</span>
+                        </div>
+                        <div class="info-item vehicle-info">
+                            <div class="vehicle-details">
+                                <div class="info-item">
+                                    <label>Approval Number</label>
+                                    <span class="info-value">PSS08180000755370</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Approval Date</label>
+                                    <span class="info-value">18/08/2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Row 4 -->
+                        <div class="info-item">
+                            <label>Expiry Date</label>
+                            <span class="info-value">18/08/2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-section">
+                    <h2 class="certificate-title">Details of Certificate</h2>
+                    <p class="certificate-text">
+                        The Deputy Inspector-General of police, Department of Operations, has approved the use of tinted glass on the vehicle with the following details in accordance with Section 66(2) of the National Road Traffic Regulations (1997) and Section 1(1) of the Motor Vehicle (Prohibition of Tinted Glass) Act, Laws of the Federation of Nigeria.
+                    </p>
+                </div>
+                
+                <!-- Action Buttons -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Left Section: Logo and Description -->
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="Themes/PoliceTheme/Styles/images/PossapLogo.svg" alt="POSSAP Logo" />
+                </div>
+                <div class="footer-text">
+                    A secure way to request and pay for your Police Specialized Services online.
+                </div>
+            </div>
+            
+            <!-- Middle Section: Navigation Links -->
+            <div class="footer-nav">
+                <a href="https://possap.gov.ng/p/about" class="footer-nav-link" target="_blank">About</a>
+                <a href="https://possap.gov.ng/p/contact" class="footer-nav-link" target="_blank">Contact</a>
+                <a href="#" class="footer-nav-link">Privacy Policy</a>
+                <a href="#" class="footer-nav-link">Terms Of Use</a>
+            </div>
+            
+            <!-- Right Section: Social Media -->
+            <div class="footer-right">
+                <div class="footer-social">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        // Hamburger Menu Toggle
+        function toggleHamburgerMenu() {
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu click handler
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            if (hamburgerMenu) {
+                hamburgerMenu.addEventListener('click', toggleHamburgerMenu);
+            }
+        
+            
+            
+            // Social media icons click handlers
+            const socialIcons = document.querySelectorAll('.social-icon');
+            socialIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const iconClass = this.querySelector('i').className;
+                    if (iconClass.includes('instagram')) {
+                        window.open('https://www.instagram.com/possap_ngg', '_blank');
+                    } else if (iconClass.includes('facebook')) {
+                        window.open('https://www.facebook.com/profile.php?id=61552184257184', '_blank');
+                    } else if (iconClass.includes('twitter')) {
+                        window.open('https://twitter.com/possap_ngg', '_blank');
+                    }
+                });
+            });
+            
+            // Footer navigation links click handlers
+            const footerNavLinks = document.querySelectorAll('.footer-nav-link');
+            footerNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.href.startsWith('http') && this.href !== '#') {
+                        e.preventDefault();
+                        alert('This page will be available soon.');
+                    }
+                });
+            });
+            
+            // Navigation links click handlers
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only prevent default for local links that aren't index.html
+                    if (this.href.includes('index.html') || this.href === '#') {
+                        // Allow local navigation
+                        return;
+                    } else if (!this.href.startsWith('http')) {
+                        e.preventDefault();
+                        alert('This functionality will be available in the full application.');
+                    }
+                    // External links will open in new tab automatically
+                });
+            });
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Escape key to go back
+            if (e.key === 'Escape') {
+                window.location.href = 'v';
+            }
+            
+        });
+    </script>
+</body>
+</html>

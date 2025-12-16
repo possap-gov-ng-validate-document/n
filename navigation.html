@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSSAP - Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .nav-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-title {
+            text-align: center;
+            color: #28428C;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-card {
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .nav-card:hover {
+            border-color: #28428C;
+            background-color: #F0F8FF;
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .nav-card-icon {
+            font-size: 2.5rem;
+            color: #28428C;
+            margin-bottom: 1rem;
+        }
+        
+        .nav-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-card-description {
+            color: #666666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .info-section {
+            background-color: #F0F8FF;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .info-title {
+            color: #28428C;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #32CD32;
+            width: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Logos -->
+            <div class="logos">
+                <div class="logo logo-1">
+                    <div class="logo-circle">
+                        <div class="logo-inner"></div>
+                    </div>
+                </div>
+                <div class="logo logo-2">
+                    <div class="logo-shield"></div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="nav">
+                <a href="https://possap.gov.ng/p/select-service" class="nav-link" target="_blank">Request Service</a>
+                <a href="https://possap.gov.ng/p/run-face-verification" class="nav-link" target="_blank">Virtual Verification</a>
+                <a href="v.html" class="nav-link active">Validate Document</a>
+                <a href="https://possap.gov.ng/p/about" class="nav-link" target="_blank">About</a>
+                <a href="https://possap.gov.ng/p/contact" class="nav-link" target="_blank">Contact</a>
+            </nav>
+            
+            <!-- Login Button -->
+            <div class="login-section">
+                <a href="https://possap.gov.ng/p/login" target="_blank" class="login-btn" style="text-decoration: none; color: white;">Login | Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="nav-container">
+            <h1 class="nav-title">POSSAP Website Pages</h1>
+            
+            <div class="nav-grid">
+                <a href="/" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="nav-card-title">Main Application</div>
+                    <div class="nav-card-description">
+                        Complete POSSAP application with validation form and document info page. Includes form validation and page transitions.
+                    </div>
+                </a>
+                
+                <a href="validate-document/PSS08180000755370" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="nav-card-title">Document Info Page</div>
+                    <div class="nav-card-description">
+                        Standalone document information page showing applicant and vehicle details. Perfect for testing the info display separately.
+                    </div>
+                </a>
+                
+                <a href="demo" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="nav-card-title">Demo Page</div>
+                    <div class="nav-card-description">
+                        Sample approval numbers and testing interface. Click on any sample to populate the main form with test data.
+                    </div>
+                </a>
+            </div>
+            
+            <div class="info-section">
+                <h3 class="info-title">Available Features</h3>
+                <ul class="info-list">
+                    <li><i class="fas fa-check"></i> Responsive design for mobile and desktop</li>
+                    <li><i class="fas fa-check"></i> Form validation with real-time feedback</li>
+                    <li><i class="fas fa-check"></i> Page transitions and navigation</li>
+                    <li><i class="fas fa-check"></i> Interactive help tooltips</li>
+                    <li><i class="fas fa-check"></i> Keyboard navigation support</li>
+                    <li><i class="fas fa-check"></i> Print and share functionality</li>
+                    <li><i class="fas fa-check"></i> Accessibility features</li>
+                    <li><i class="fas fa-check"></i> Sample data for testing</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Chat Icon -->
+    <div class="floating-chat">
+        <i class="fas fa-comment"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login button click handler
+            const loginBtn = document.querySelector('.login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Login functionality will be implemented in the full application.');
+                });
+            }
+            
+            // Floating chat click handler
+            const floatingChat = document.querySelector('.floating-chat');
+            if (floatingChat) {
+                floatingChat.addEventListener('click', function() {
+                    alert('Chat support is currently unavailable. Please contact us through the Contact page for assistance.');
+                });
+            }
+            
+            // Navigation links click handlers
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only prevent default for local links that aren't index.html
+                    if (this.href.includes('/') || this.href === '#') {
+                        // Allow local navigation
+                        return;
+                    } else if (!this.href.startsWith('http')) {
+                        e.preventDefault();
+                        alert('This functionality will be available in the full application.');
+                    }
+                    // External links will open in new tab automatically
+                });
+            });
+        });
+    </script>
+</body>
+</html>
