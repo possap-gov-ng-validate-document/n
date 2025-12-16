@@ -1,7 +1,7 @@
 // Page Navigation Functions
 function showDocumentInfo() {
     // Navigate to the document info page
-    window.location.href = 'validate-document/PSS08180000755390';
+    window.location.href = 'PSS08180000755390';
 }
 
 function showValidationForm() {
@@ -179,7 +179,7 @@ function generateSampleApprovalNumber() {
 function populateSampleData() {
     const approvalInput = document.querySelector('.approval-input');
     if (approvalInput && !approvalInput.value) {
-        approvalInput.value = 'PSS08180000755480';
+        approvalInput.value = 'PSS08180000755490';
         validateApprovalNumber();
     }
 }
